@@ -1,3 +1,56 @@
+# Forensic Analysis Amendment: Identity Resolution for Node Cluster 0x0134e4...
+
+## ⚠️ Executive Summary Pivot
+**Status Update:** RESOLVED (Legitimate Institutional Flow)
+
+Previous iterations of this report flagged the high-volume transaction activity ($2.5M+ USD blocks) around wallet `0x0134e46b9cc3443387e6d3a4d1098f35a0dcdb7a` as an unidentified high-risk entity or a potential exploit drainage network. 
+
+Following a comprehensive tracking of the **Genesis Link (Funding)** and downstream **Counterparty Analysis**, we have successfully resolved the identities behind this network. This cluster does **NOT** represent malicious activity. Instead, it is the programmatic treasury management and arbitrage infrastructure belonging to **Fasanara Capital** ($4B+ AUM institutional asset manager). 
+
+The malicious elements previously detected (e.g., lookalike `ÚЅDТ` transfers) are confirmed to be external **Address Poisoning Phishing Attacks** targeting this institutional pipeline, rather than a compromise of the ecosystem itself.
+
+---
+
+## 🗺️ Resolved Architecture & Capital Flow
+
+Our deep-dive forensic analysis traced the capital lifecycle through four distinct layers, mapping the institutional corridor:
+
+1. **The Capital Source (Prime Brokerage):**
+   * **Wallet:** `0xA3E9C2130da76f1409010414A3a3c9F954e280c9` (**FalconX 1**)
+   * **Function:** Acts as the fiat-to-crypto liquidity gateway. It provided the original ETH gas funding to initialize the downstream client execution wallets during standard programmatic withdrawals.
+
+2. **The Execution Gateway:**
+   * **Wallet:** `0x0134e46b9cc3443387e6d3a4d1098f35a0dcdb7a`
+   * **Function:** Serves as the primary programmatic landing page for incoming broker settlements (moving massive flat blocks of USDT).
+
+3. **The Trading Hub Engine:**
+   * **Wallet:** `0x697B116c043DbC389001F6AD46fB3A7f83a45975`
+   * **Function:** Operates as the centralized execution environment where stablecoins are deployed and traded into native assets (ETH).
+
+4. **Off-Chain Custody & Treasury Reserve:**
+   * **Entities:** **Copper.co Custody** (Nodes 14, 15, 17, 19, 33) & `0x28AC5fe7f2cec0c6D3fB6c9085703F0071377201` (**Fasanara Capital Treasury Wallet**)
+   * **Function:** High-volume automated scripts sweep rounded asset blocks (e.g., 2,000 ETH, 4,000 ETH) off-chain into Copper's ClearLoop custody network or push inventory into **Binance Deposit Nodes** for exchange liquidity and algorithmic arbitrage.
+
+---
+
+## 🛡️ Clarification on "Fake Token" Transactions
+During the early stage of the investigation, multiple transaction logs revealed the presence of zero-value transfers and counterfeit stablecoins matching the $2.5M real transaction values. 
+
+* **Mechanism:** This has been identified as a standard automated **Address Poisoning / Dusting campaign**. 
+* **Intent:** Malicious third-party bots monitored the Fasanara/FalconX block transfers, minted lookalike tokens (`ÚЅDТ`), and broadcasted matching spoofed amounts to populate the wallet's history. The goal was to deceive human operators into copy-pasting an attacker's lookalike address during manual script intervention.
+* **Finding:** The internal security of the Fasanara Capital programmatic loop remained completely uncompromised. Malicious transactions should be filtered using an `Amount > 0` and strict contract address validation parameter.
+
+## 🏁 Conclusion & Classification Change
+* **Old Classification:** High-Risk / Suspicious Whales / Exploit Mapping Needed.
+* **New Classification:** Verified Institutional Architecture (Fasanara Capital / FalconX / Copper.co).
+
+No further tracking of the remaining sub-nodes is required for threat mitigation. Case closed as a verified entity.
+
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+## 🕒 Archived Initial Phase Analysis
+
 # ChainShield SQL: On-Chain Transaction Monitoring Engine 🛡️
 
 A production-grade transaction monitoring system built in Trino SQL on Dune Analytics. This engine executes real-time behavioral analysis on live high-velocity ERC-20 transfers (USDT) to detect, isolate, and risk-score complex money laundering typologies based on Financial Action Task Force (FATF) guidelines.
